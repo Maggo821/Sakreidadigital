@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     "individuelle digitale Lösungen",
     "digitale Bestellungen vor Ort",
     "Bestellsystem für mobile Händler",
+    "OrderPoint",
   ],
   authors: [{ name: "Marco Sakreida" }],
   creator: "Marco Sakreida",

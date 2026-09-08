@@ -22,9 +22,9 @@ const solutions = [
   },
   {
     number: "04",
-    type: "BeachOrder",
+    type: "OrderPoint",
     title: "Bestellen, wo der Kunde gerade ist.",
-    text: "BeachOrder ermöglicht digitale Bestellungen vor Ort, bei Märkten, Veranstaltungen, mobilen Händlern und in Ferienregionen. Anbieter erhalten einen einfachen Bestellkanal für Ausgabe oder Lieferung.",
+    text: "OrderPoint ermöglicht digitale Bestellungen vor Ort, bei Märkten, Veranstaltungen und mobilen Händlern. Anbieter erhalten einen einfachen Bestellkanal für Ausgabe oder Lieferung.",
     tags: ["Vor Ort", "Mobile Händler"],
   },
 ];

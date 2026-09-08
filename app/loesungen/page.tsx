@@ -61,7 +61,7 @@ export default function LoesungenPage() {
       <section className="solutions-hero shell">
         <p className="eyebrow">Ausgewählte Lösungen</p>
         <h1>Digitales, das<br /><em>etwas einfacher macht.</em></h1>
-        <p className="page-intro">Diese Lösungen sind aus echten Anforderungen entstanden. Sie zeigen, wie digitale Werkzeuge Abläufe ordnen, Menschen verbinden und neue Möglichkeiten schaffen können.</p>
+        <p className="page-intro">Diese Lösungen sind aus echten Anforderungen entstanden. Sie zeigen, wie digitale Werkzeuge Abläufe ordnen, Menschen verbinden und neue Möglichkeiten schaffen können. BeachOrder und OrderPoint basieren dabei auf derselben Bestellplattform und werden je nach Einsatzbereich unterschiedlich positioniert.</p>
       </section>
 
       <section className="portfolio-list shell">
