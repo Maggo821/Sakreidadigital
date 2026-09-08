@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     "Prozessoptimierung",
     "Automatisierung KMU",
     "KI Beratung KMU",
+    "Fördermittel Digitalisierung",
+    "Digitalisierungsförderung KMU",
     "Digitalisierung KMU",
     "individuelle digitale Lösungen",
   ],

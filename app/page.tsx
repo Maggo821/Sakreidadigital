@@ -35,6 +35,12 @@ const steps = [
   ["03", "Umsetzen", "Wir bauen, testen und integrieren eine Lösung, die im Alltag wirklich funktioniert."],
 ];
 
+const fundingSteps = [
+  ["01", "Standort bestimmen", "Wir schauen gemeinsam, wo dein Unternehmen digital steht und wo im Alltag Zeit, Geld oder Chancen verloren gehen."],
+  ["02", "Vorhaben entwickeln", "Aus dem konkreten Bedarf wird ein klares Digitalisierungsprojekt mit Ziel, Umfang und realistischem Budget."],
+  ["03", "Förderung prüfen", "Wir ordnen das Vorhaben passenden Fördermöglichkeiten zu und bereiten die nächsten Schritte verständlich vor."],
+];
+
 export default function Home() {
   return (
     <main>
@@ -70,6 +76,8 @@ export default function Home() {
       </section>
 
       <section className="manifesto"><div className="shell manifesto-grid"><p className="eyebrow">Unsere Haltung</p><blockquote>Digitalisierung ist mehr<br /><span>als nur KI.</span></blockquote><p className="manifesto-copy">Gerade im Mittelstand müssen Lösungen verständlich, bezahlbar und wartbar sein. Wir verstehen zuerst den Prozess, prüfen die Wirkung und kombinieren passende Werkzeuge: klare Abläufe, gute Daten, Automatisierung und dort, wo es sinnvoll ist, KI.</p></div></section>
+
+      <section className="funding-section"><div className="shell"><div className="funding-intro"><p className="eyebrow">Digitalisierung möglich machen</p><h2>Gute Ideen sollen<br /><span>nicht am Budget scheitern.</span></h2><p>Viele kleine und mittelständische Unternehmen wissen, dass sie digitaler werden müssen, aber nicht, wo sie anfangen oder welche Unterstützung infrage kommt. Wir übersetzen deinen Bedarf in ein klares Vorhaben und prüfen gemeinsam mögliche Förderwege.</p></div><div className="funding-steps">{fundingSteps.map(([number, title, text]) => <div className="funding-step" key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></div>)}</div><div className="funding-note"><strong>Aktueller Anhaltspunkt:</strong> Der KfW-ERP-Förderkredit Digitalisierung (511/512) unterscheidet unter anderem Basis-, LevelUp- und HighEnd-Digitalisierung. Für bestimmte Vorhaben der höheren Stufen kann ein Zuschuss vorgesehen sein. <a href="https://www.kfw.de/511" target="_blank" rel="noreferrer">Mehr bei der KfW ↗</a><small>Keine Fördermittel- oder Rechtsberatung. Eine Förderung ist abhängig von den jeweiligen Richtlinien, der Antragstellung und der Zusage des Finanzierungspartners.</small></div></div></section>
 
       <section className="section shell process" id="prozess">
         <div className="section-heading process-heading"><p className="eyebrow">So arbeiten wir</p><h2>Vom Problem<br /><span>zum Fortschritt.</span></h2><p className="section-lead">Ohne Fachsprache und ohne überdimensionierte Standardpakete. Wir starten dort, wo in deinem Unternehmen Zeit und Energie verloren gehen.</p></div>
