@@ -42,6 +42,49 @@ const fundingSteps = [
   ["03", "Förderung prüfen", "Wir ordnen das Vorhaben passenden Fördermöglichkeiten zu und bereiten die nächsten Schritte verständlich vor."],
 ];
 
+const faqs = [
+  {
+    question: "Was macht Sakeida Digital genau?",
+    answer:
+      "Sakeida Digital begleitet kleine und mittelständische Unternehmen bei der Digitalisierung. Wir analysieren Arbeitsabläufe, finden Zeitfresser und entwickeln daraus digitale Lösungen: von besser organisierten Prozessen über Automatisierung bis zu individuellen Web-Anwendungen.",
+  },
+  {
+    question: "Für wen ist das Angebot gedacht?",
+    answer:
+      "Für kleine und mittelständische Unternehmen, Selbstständige, Handwerks- und Dienstleistungsbetriebe, die viel Zeit in Verwaltung, Papier, doppelter Dateneingabe oder unklaren Abläufen verlieren.",
+  },
+  {
+    question: "Muss ich dafür künstliche Intelligenz einsetzen?",
+    answer:
+      "Nein. KI ist nur ein möglicher Baustein. Oft bringen klare Abläufe, saubere Daten und einfache Automatisierung mehr Wirkung. KI setzen wir nur ein, wenn sie einen echten Vorteil bringt.",
+  },
+  {
+    question: "Kann die Digitalisierung meines Unternehmens gefördert werden?",
+    answer:
+      "Für Digitalisierungsvorhaben gibt es Förderprogramme, zum Beispiel den ERP-Förderkredit Digitalisierung der KfW mit den Stufen Basis-, LevelUp- und HighEnd-Digitalisierung. Wir helfen dabei, dein Vorhaben so zu beschreiben, dass es sich einordnen lässt. Ob eine Förderung möglich ist, entscheidet immer das jeweilige Programm zusammen mit deinem Finanzierungspartner. Wir leisten keine Fördermittel- oder Rechtsberatung.",
+  },
+  {
+    question: "In welcher Region arbeitet Sakeida Digital?",
+    answer:
+      "Der Sitz ist in Dreieich bei Frankfurt am Main. Wir arbeiten vor allem mit Unternehmen im Rhein-Main-Gebiet, unter anderem in Frankfurt, Offenbach, Langen, Neu-Isenburg und Darmstadt. Digitale Projekte begleiten wir auch überregional.",
+  },
+  {
+    question: "Wie läuft die Zusammenarbeit ab?",
+    answer:
+      "In drei Schritten: verstehen, fokussieren, umsetzen. Zuerst schauen wir uns die tatsächlichen Abläufe an, dann bestimmen wir den Hebel mit der größten Wirkung, danach wird die Lösung gebaut, getestet und in den Alltag integriert.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+
 export default function Home() {
   return (
     <main>
@@ -61,7 +104,7 @@ export default function Home() {
         <div className="hero-kicker"><span className="pulse" /> Digitalisierung für kleine und mittelständische Unternehmen</div>
         <h1>Arbeit<br /><em>einfacher machen.</em></h1>
         <div className="hero-bottom">
-          <p className="hero-intro">Sakeida Digital hilft kleinen und mittelständischen Unternehmen, <strong>digital besser zu arbeiten</strong>, Abläufe zu vereinfachen und passende Lösungen zu entwickeln. KI ist dabei ein Baustein von vielen.</p>
+          <p className="hero-intro">Sakeida Digital hilft kleinen und mittelständischen Unternehmen, <strong>digital besser zu arbeiten</strong>, Abläufe zu vereinfachen und passende Lösungen zu entwickeln. KI ist dabei ein Baustein von vielen. Aus <strong>Dreieich</strong> für Unternehmen im Rhein-Main-Gebiet und überregional.</p>
           <a className="circle-link" href="#loesungen" aria-label="Zu den Lösungen scrollen"><span>↓</span></a>
         </div>
         <div className="hero-grid-art" aria-hidden="true"><span /><span /><span /><span /><span /></div>
@@ -74,6 +117,7 @@ export default function Home() {
         <div className="solution-list">
           {solutions.map((solution) => <article className="solution-card" key={solution.number}><div className="solution-top"><span className="solution-number">{solution.number}</span><span className="solution-type">{solution.type}</span></div><h3>{solution.title}</h3><p>{solution.text}</p><div className="tags">{solution.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>{solution.url ? <a className="solution-link" href={solution.url} target="_blank" rel="noreferrer">Lösung ansehen <span>↗</span></a> : <span className="solution-link solution-link-disabled">Arbeitsname · Domain folgt</span>}<span className="card-arrow">↗</span></article>)}
         </div>
+        <a className="section-more" href="/loesungen">Alle Lösungen ansehen <span>↗</span></a>
       </section>
 
       <section className="manifesto"><div className="shell manifesto-grid"><p className="eyebrow">Unsere Haltung</p><blockquote>Digitalisierung ist mehr<br /><span>als nur KI.</span></blockquote><p className="manifesto-copy">Gerade im Mittelstand müssen Lösungen verständlich, bezahlbar und wartbar sein. Wir verstehen zuerst den Prozess, prüfen die Wirkung und kombinieren passende Werkzeuge: klare Abläufe, gute Daten, Automatisierung und dort, wo es sinnvoll ist, KI.</p></div></section>
@@ -85,9 +129,16 @@ export default function Home() {
         <div className="steps">{steps.map(([number, title, text]) => <div className="step" key={number}><span className="step-number">{number}</span><h3>{title}</h3><p>{text}</p></div>)}</div>
       </section>
 
+      <section className="section shell faq-section" id="fragen">
+        <div className="section-heading process-heading"><p className="eyebrow">Häufige Fragen</p><h2>Kurz erklärt,<br /><span>ohne Fachsprache.</span></h2></div>
+        <div className="faq-list">{faqs.map((faq) => <div className="faq-item" key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></div>)}</div>
+      </section>
+
       <section className="contact shell"><div className="contact-orb" aria-hidden="true" /><p className="eyebrow">Bereit für den nächsten Schritt?</p><h2>Mach es<br /><em>einfacher.</em></h2><a className="contact-link" href="/kontakt">Lass uns sprechen <span>↗</span></a><p className="contact-note">Unverbindlich. Klar. Auf Augenhöhe.</p></section>
 
-      <footer className="footer shell"><span>© 2026 Sakeida Digital</span><span>Individuelle digitale Lösungen</span><div><a href="/kontakt">Kontakt</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="#top">Nach oben ↑</a></div></footer>
+      <footer className="footer shell"><span>© 2026 Sakeida Digital · Dreieich</span><span>Digitalisierung für den Mittelstand</span><div><a href="/loesungen">Lösungen</a><a href="/kontakt">Kontakt</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div></footer>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </main>
   );
 }
