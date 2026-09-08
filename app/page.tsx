@@ -1,24 +1,31 @@
 const solutions = [
   {
     number: "01",
-    type: "Chaos-Zentrale",
-    title: "Büroarbeit automatisch verbinden.",
-    text: "Paperless-NGX, Lexoffice und Immobilienprozesse in einem wartbaren System verbinden, statt Informationen doppelt zu pflegen.",
-    tags: ["Dokumente", "Buchhaltung", "n8n"],
+    type: "Digitale Büroorganisation",
+    title: "Weniger Verwaltung. Mehr Überblick.",
+    text: "Dokumente, Aufgaben, Kunden und Vorgänge an einem Ort organisieren, damit nichts liegen bleibt und Informationen nicht doppelt gepflegt werden.",
+    tags: ["Ordnung", "Automatisierung"],
   },
   {
     number: "02",
-    type: "Haas Sales OS",
-    title: "Vertrieb mit besserem Überblick.",
-    text: "Ein KI-gestütztes CRM für Einwandbehandlung, Angebotsvergleich und Wissen, das im Beratungsgespräch wirklich hilft.",
-    tags: ["CRM", "Wissenssystem", "KI"],
+    type: "Vertriebsunterstützung",
+    title: "Besser vorbereitet in jedes Gespräch.",
+    text: "Kundendaten, Angebote und Unternehmenswissen so verbinden, dass dein Team schneller antwortet und sicherer entscheidet.",
+    tags: ["Vertrieb", "Wissen"],
   },
   {
     number: "03",
     type: "Maklerspion",
-    title: "Daten dort nutzen, wo sie entstehen.",
-    text: "Ein SFTP-basierter OpenImmo-Import, der Immobiliendaten zuverlässig in den digitalen Maklerprozess bringt.",
-    tags: ["OpenImmo", "SFTP", "Immobilien"],
+    title: "Immobilien entdecken, bevor sie sichtbar werden.",
+    text: "Maklerspion bringt Hinweise auf Grundstücke, Leerstände und interessante Objekte mit den richtigen Immobilienprofis zusammen.",
+    tags: ["Immobilien", "Potenziale"],
+  },
+  {
+    number: "04",
+    type: "BeachOrder",
+    title: "Bestellen, wo der Tag stattfindet.",
+    text: "Gäste bestellen unkompliziert vom Strand, Stellplatz oder Ferienapartment. Anbieter erhalten einen einfachen digitalen Bestellkanal.",
+    tags: ["Bestellungen", "Lieferung"],
   },
 ];
 
@@ -56,7 +63,7 @@ export default function Home() {
       <section className="signal-band"><div className="shell signal-inner"><span>KI-Beratung</span><b>✳</b><span>Prozessoptimierung</span><b>✳</b><span>Individuelle Lösungen</span><b>✳</b><span>KI-Beratung</span></div></section>
 
       <section className="section shell" id="loesungen">
-        <div className="section-heading"><p className="eyebrow">Eigene Lösungen</p><h2>Erfahrung, die<br /><span>weiterhilft.</span></h2><p className="section-lead">Diese Systeme sind aus echten Anforderungen entstanden. Sie zeigen, wie aus einem konkreten Prozess eine bezahlbare und wartbare Lösung wird.</p></div>
+        <div className="section-heading"><p className="eyebrow">Lösungen aus der Praxis</p><h2>Was könnte bei dir<br /><span>einfacher werden?</span></h2><p className="section-lead">Diese Lösungen sind aus echten Anforderungen entstanden. Sie zeigen, wie aus einem konkreten Problem ein verständliches digitales Werkzeug wird.</p></div>
         <div className="solution-list">
           {solutions.map((solution) => <article className="solution-card" key={solution.number}><div className="solution-top"><span className="solution-number">{solution.number}</span><span className="solution-type">{solution.type}</span></div><h3>{solution.title}</h3><p>{solution.text}</p><div className="tags">{solution.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><span className="card-arrow">↗</span></article>)}
         </div>
