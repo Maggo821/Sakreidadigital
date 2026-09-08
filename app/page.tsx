@@ -50,7 +50,7 @@ export default function Home() {
           <span>SAKEIDA<br /><i>DIGITAL</i></span>
         </a>
         <div className="nav-links">
-          <a href="#loesungen">Lösungen</a>
+          <a href="/loesungen">Lösungen</a>
           <a href="#prozess">Prozess</a>
           <a className="nav-cta" href="/kontakt">Kontakt <span>↗</span></a>
         </div>
