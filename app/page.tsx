@@ -51,28 +51,28 @@ export default function Home() {
       </nav>
 
       <section className="hero shell" id="top">
-        <div className="hero-kicker"><span className="pulse" /> Digitale Beratung für morgen</div>
-        <h1>Komplexität<br /><em>simplifizieren.</em></h1>
+        <div className="hero-kicker"><span className="pulse" /> Digitalisierung für kleine und mittelständische Unternehmen</div>
+        <h1>Arbeit<br /><em>einfacher machen.</em></h1>
         <div className="hero-bottom">
-          <p className="hero-intro">Sakeida Digital verbindet <strong>KI, Prozesse und Menschen</strong> zu Lösungen, die dein Unternehmen klarer, schneller und zukunftsfähig machen.</p>
+          <p className="hero-intro">Sakeida Digital hilft kleinen und mittelständischen Unternehmen, <strong>digital besser zu arbeiten</strong>, Abläufe zu vereinfachen und passende Lösungen zu entwickeln. KI ist dabei ein Baustein von vielen.</p>
           <a className="circle-link" href="#loesungen" aria-label="Zu den Lösungen scrollen"><span>↓</span></a>
         </div>
         <div className="hero-grid-art" aria-hidden="true"><span /><span /><span /><span /><span /></div>
       </section>
 
-      <section className="signal-band"><div className="shell signal-inner"><span>KI-Beratung</span><b>✳</b><span>Prozessoptimierung</span><b>✳</b><span>Individuelle Lösungen</span><b>✳</b><span>KI-Beratung</span></div></section>
+      <section className="signal-band"><div className="shell signal-inner"><span>Digitalisierung</span><b>✳</b><span>Prozessoptimierung</span><b>✳</b><span>Automatisierung</span><b>✳</b><span>Individuelle Lösungen</span><b>✳</b><span>KI als Baustein</span></div></section>
 
       <section className="section shell" id="loesungen">
-        <div className="section-heading"><p className="eyebrow">Lösungen aus der Praxis</p><h2>Was könnte bei dir<br /><span>einfacher werden?</span></h2><p className="section-lead">Diese Lösungen sind aus echten Anforderungen entstanden. Sie zeigen, wie aus einem konkreten Problem ein verständliches digitales Werkzeug wird.</p></div>
+        <div className="section-heading"><p className="eyebrow">Lösungen aus der Praxis</p><h2>Was könnte in deinem Unternehmen<br /><span>einfacher werden?</span></h2><p className="section-lead">Diese Lösungen sind aus echten Anforderungen entstanden. Sie zeigen, wie aus einem konkreten Problem ein verständliches digitales Werkzeug wird.</p></div>
         <div className="solution-list">
           {solutions.map((solution) => <article className="solution-card" key={solution.number}><div className="solution-top"><span className="solution-number">{solution.number}</span><span className="solution-type">{solution.type}</span></div><h3>{solution.title}</h3><p>{solution.text}</p><div className="tags">{solution.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><span className="card-arrow">↗</span></article>)}
         </div>
       </section>
 
-      <section className="manifesto"><div className="shell manifesto-grid"><p className="eyebrow">Unsere Haltung</p><blockquote>Keine KI um der KI willen.<br /><span>Wirkung zuerst.</span></blockquote><p className="manifesto-copy">Wir verstehen zuerst den Prozess, prüfen Wirtschaftlichkeit und bauen dann eine Lösung, die Mitarbeitende entlastet und im Alltag bestehen kann.</p></div></section>
+      <section className="manifesto"><div className="shell manifesto-grid"><p className="eyebrow">Unsere Haltung</p><blockquote>Digitalisierung ist mehr<br /><span>als nur KI.</span></blockquote><p className="manifesto-copy">Gerade im Mittelstand müssen Lösungen verständlich, bezahlbar und wartbar sein. Wir verstehen zuerst den Prozess, prüfen die Wirkung und kombinieren passende Werkzeuge: klare Abläufe, gute Daten, Automatisierung und dort, wo es sinnvoll ist, KI.</p></div></section>
 
       <section className="section shell process" id="prozess">
-        <div className="section-heading process-heading"><p className="eyebrow">So arbeiten wir</p><h2>Vom Problem<br /><span>zum Fortschritt.</span></h2></div>
+        <div className="section-heading process-heading"><p className="eyebrow">So arbeiten wir</p><h2>Vom Problem<br /><span>zum Fortschritt.</span></h2><p className="section-lead">Ohne Fachsprache und ohne überdimensionierte Standardpakete. Wir starten dort, wo in deinem Unternehmen Zeit und Energie verloren gehen.</p></div>
         <div className="steps">{steps.map(([number, title, text]) => <div className="step" key={number}><span className="step-number">{number}</span><h3>{title}</h3><p>{text}</p></div>)}</div>
       </section>
 
