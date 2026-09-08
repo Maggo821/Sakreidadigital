@@ -1,24 +1,24 @@
 const solutions = [
   {
     number: "01",
-    type: "Workflow System",
-    title: "Weniger Suchen. Mehr Entscheiden.",
-    text: "Individuelle Wissenssysteme, die Informationen dort verfügbar machen, wo sie gebraucht werden.",
-    tags: ["KI-Wissensbasis", "Automatisierung"],
+    type: "Chaos-Zentrale",
+    title: "Büroarbeit automatisch verbinden.",
+    text: "Paperless-NGX, Lexoffice und Immobilienprozesse in einem wartbaren System verbinden, statt Informationen doppelt zu pflegen.",
+    tags: ["Dokumente", "Buchhaltung", "n8n"],
   },
   {
     number: "02",
-    type: "Operations",
-    title: "Prozesse, die mitdenken.",
-    text: "Von der ersten Analyse bis zum automatisierten Ablauf: Wir machen aus manuellen Routinen digitale Systeme.",
-    tags: ["Prozessanalyse", "Schnittstellen"],
+    type: "Haas Sales OS",
+    title: "Vertrieb mit besserem Überblick.",
+    text: "Ein KI-gestütztes CRM für Einwandbehandlung, Angebotsvergleich und Wissen, das im Beratungsgespräch wirklich hilft.",
+    tags: ["CRM", "Wissenssystem", "KI"],
   },
   {
     number: "03",
-    type: "Digital Product",
-    title: "Ideen werden zu Lösungen.",
-    text: "Web-Apps und digitale Werkzeuge, die genau zu deinem Unternehmen passen. Klar, skalierbar, ohne Ballast.",
-    tags: ["Web-Apps", "Individuelle Tools"],
+    type: "Maklerspion",
+    title: "Daten dort nutzen, wo sie entstehen.",
+    text: "Ein SFTP-basierter OpenImmo-Import, der Immobiliendaten zuverlässig in den digitalen Maklerprozess bringt.",
+    tags: ["OpenImmo", "SFTP", "Immobilien"],
   },
 ];
 
@@ -39,7 +39,7 @@ export default function Home() {
         <div className="nav-links">
           <a href="#loesungen">Lösungen</a>
           <a href="#prozess">Prozess</a>
-          <a className="nav-cta" href="mailto:hallo@sakeida-digital.de">Kontakt <span>↗</span></a>
+          <a className="nav-cta" href="/kontakt">Kontakt <span>↗</span></a>
         </div>
       </nav>
 
@@ -56,22 +56,22 @@ export default function Home() {
       <section className="signal-band"><div className="shell signal-inner"><span>KI-Beratung</span><b>✳</b><span>Prozessoptimierung</span><b>✳</b><span>Individuelle Lösungen</span><b>✳</b><span>KI-Beratung</span></div></section>
 
       <section className="section shell" id="loesungen">
-        <div className="section-heading"><p className="eyebrow">Was wir bauen</p><h2>Keine Lösungen<br /><span>von der Stange.</span></h2><p className="section-lead">Jedes Unternehmen arbeitet anders. Deshalb entstehen bei uns keine Standardpakete, sondern digitale Systeme, die zu deiner Realität passen.</p></div>
+        <div className="section-heading"><p className="eyebrow">Eigene Lösungen</p><h2>Erfahrung, die<br /><span>weiterhilft.</span></h2><p className="section-lead">Diese Systeme sind aus echten Anforderungen entstanden. Sie zeigen, wie aus einem konkreten Prozess eine bezahlbare und wartbare Lösung wird.</p></div>
         <div className="solution-list">
           {solutions.map((solution) => <article className="solution-card" key={solution.number}><div className="solution-top"><span className="solution-number">{solution.number}</span><span className="solution-type">{solution.type}</span></div><h3>{solution.title}</h3><p>{solution.text}</p><div className="tags">{solution.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><span className="card-arrow">↗</span></article>)}
         </div>
       </section>
 
-      <section className="manifesto"><div className="shell manifesto-grid"><p className="eyebrow">Unsere Haltung</p><blockquote>Technologie ist kein Selbstzweck.<br /><span>Sie soll Raum schaffen.</span></blockquote><p className="manifesto-copy">Für bessere Entscheidungen. Für weniger Reibung. Für Arbeit, die sich wieder nach Fortschritt anfühlt.</p></div></section>
+      <section className="manifesto"><div className="shell manifesto-grid"><p className="eyebrow">Unsere Haltung</p><blockquote>Keine KI um der KI willen.<br /><span>Wirkung zuerst.</span></blockquote><p className="manifesto-copy">Wir verstehen zuerst den Prozess, prüfen Wirtschaftlichkeit und bauen dann eine Lösung, die Mitarbeitende entlastet und im Alltag bestehen kann.</p></div></section>
 
       <section className="section shell process" id="prozess">
         <div className="section-heading process-heading"><p className="eyebrow">So arbeiten wir</p><h2>Vom Problem<br /><span>zum Fortschritt.</span></h2></div>
         <div className="steps">{steps.map(([number, title, text]) => <div className="step" key={number}><span className="step-number">{number}</span><h3>{title}</h3><p>{text}</p></div>)}</div>
       </section>
 
-      <section className="contact shell"><div className="contact-orb" aria-hidden="true" /><p className="eyebrow">Bereit für den nächsten Schritt?</p><h2>Mach es<br /><em>einfacher.</em></h2><a className="contact-link" href="mailto:hallo@sakeida-digital.de">Lass uns sprechen <span>↗</span></a><p className="contact-note">Unverbindlich. Klar. Auf Augenhöhe.</p></section>
+      <section className="contact shell"><div className="contact-orb" aria-hidden="true" /><p className="eyebrow">Bereit für den nächsten Schritt?</p><h2>Mach es<br /><em>einfacher.</em></h2><a className="contact-link" href="/kontakt">Lass uns sprechen <span>↗</span></a><p className="contact-note">Unverbindlich. Klar. Auf Augenhöhe.</p></section>
 
-      <footer className="footer shell"><span>© 2025 Sakeida Digital</span><span>Individuelle digitale Lösungen</span><div><a href="mailto:hallo@sakeida-digital.de">hallo@sakeida-digital.de</a><a href="#top">Nach oben ↑</a></div></footer>
+      <footer className="footer shell"><span>© 2026 Sakeida Digital</span><span>Individuelle digitale Lösungen</span><div><a href="/kontakt">Kontakt</a><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="#top">Nach oben ↑</a></div></footer>
     </main>
   );
 }
