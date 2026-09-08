@@ -19,6 +19,7 @@ const solutions = [
     title: "Immobilien entdecken, bevor sie sichtbar werden.",
     text: "Maklerspion bringt Hinweise auf Grundstücke, Leerstände und interessante Objekte mit den richtigen Immobilienprofis zusammen.",
     tags: ["Immobilien", "Potenziale"],
+    url: "https://maklerspion.de",
   },
   {
     number: "04",
@@ -71,7 +72,7 @@ export default function Home() {
       <section className="section shell" id="loesungen">
         <div className="section-heading"><p className="eyebrow">Lösungen aus der Praxis</p><h2>Was könnte in deinem Unternehmen<br /><span>einfacher werden?</span></h2><p className="section-lead">Diese Lösungen sind aus echten Anforderungen entstanden. Sie zeigen, wie aus einem konkreten Problem ein verständliches digitales Werkzeug wird.</p></div>
         <div className="solution-list">
-          {solutions.map((solution) => <article className="solution-card" key={solution.number}><div className="solution-top"><span className="solution-number">{solution.number}</span><span className="solution-type">{solution.type}</span></div><h3>{solution.title}</h3><p>{solution.text}</p><div className="tags">{solution.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><span className="card-arrow">↗</span></article>)}
+          {solutions.map((solution) => <article className="solution-card" key={solution.number}><div className="solution-top"><span className="solution-number">{solution.number}</span><span className="solution-type">{solution.type}</span></div><h3>{solution.title}</h3><p>{solution.text}</p><div className="tags">{solution.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>{solution.url ? <a className="solution-link" href={solution.url} target="_blank" rel="noreferrer">Lösung ansehen <span>↗</span></a> : <span className="solution-link solution-link-disabled">Arbeitsname · Domain folgt</span>}<span className="card-arrow">↗</span></article>)}
         </div>
       </section>
 

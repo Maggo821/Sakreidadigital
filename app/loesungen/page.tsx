@@ -16,36 +16,54 @@ const solutions = [
     text: "Hausboard bündelt Immobilien, Bewohner, Aufgaben, Termine, Dokumente und Dienstleister an einem zentralen Ort. So werden Vorgänge nachvollziehbar und Zuständigkeiten klar.",
     benefit: "Für Immobilienverwalter und Teams, die weniger suchen und besser zusammenarbeiten wollen.",
     tags: ["Objekte", "Tickets", "Dokumente"],
+    url: "https://hausboard-nu.vercel.app",
+    linkLabel: "Hausboard öffnen",
     tone: "light",
   },
   {
     number: "02",
     name: "BeachOrder",
-    category: "Bestellung & Verkauf",
-    title: "Bestellen, wo der Kunde gerade ist.",
-    text: "BeachOrder macht digitale Bestellungen direkt vor Ort möglich: am Marktstand, im Café, auf Veranstaltungen, beim mobilen Händler oder im Ferienapartment. Anbieter verwalten Angebote, Bestellungen und Ausgabe oder Lieferung an einem Ort.",
-    benefit: "Für Märkte, Gastronomie, Veranstaltungen, Ferienregionen und mobile Händler.",
-    tags: ["Vor Ort", "Lieferung", "Mobile Händler"],
+    category: "Regionen am Meer und an Seen",
+    title: "Der digitale Marktplatz für deine Region.",
+    text: "BeachOrder verbindet Anbieter und Gäste in Ferienregionen. Restaurants, Kioske, Campingplätze und Verleihe können über einen gemeinsamen regionalen Auftritt Bestellungen zur Abholung oder Lieferung anbieten.",
+    benefit: "Für Inseln, Seen, Strände, Campingregionen und Ferienorte mit mehreren Anbietern.",
+    tags: ["Marktplatz", "Ferienregion", "Lieferung"],
+    url: "https://sylt.beachorder.de/markt/sylt",
+    linkLabel: "BeachOrder ansehen",
     tone: "lime",
   },
   {
     number: "03",
+    name: "OrderPoint",
+    category: "Arbeitsname · Bestellungen vor Ort",
+    title: "Bestellen, wo der Kunde gerade ist.",
+    text: "OrderPoint macht digitale Bestellungen direkt vor Ort möglich: am Marktstand, im Café, auf Veranstaltungen, beim mobilen Händler oder im Ferienapartment. Anbieter verwalten Angebote, Bestellungen und Ausgabe oder Lieferung an einem Ort.",
+    benefit: "Für Märkte, Gastronomie, Veranstaltungen, mobile Händler und einzelne Anbieter.",
+    tags: ["Vor Ort", "Mobile Händler", "Abholung"],
+    linkLabel: "Domain folgt",
+    tone: "dark",
+  },
+  {
+    number: "04",
     name: "Familienboard",
     category: "Organisation im Alltag",
     title: "Alles, was eine Familie koordinieren muss.",
     text: "Familienboard bringt Termine, Aufgaben, Schule, Ferien, Einkäufe und Erinnerungen in eine gemeinsame Übersicht. Jedes Familienmitglied sieht, was für es wichtig ist.",
     benefit: "Eine einfache digitale Organisation für Familien, statt vieler einzelner Listen und Kalender.",
     tags: ["Kalender", "Aufgaben", "Familie"],
-    tone: "dark",
+    url: "https://mobile-zeta-ecru.vercel.app",
+    linkLabel: "Familienboard öffnen",
+    tone: "light",
   },
   {
-    number: "04",
+    number: "05",
     name: "QR-Code-Seiten",
     category: "Kommunikation & Information",
     title: "Eine Information, ein Scan, der richtige nächste Schritt.",
     text: "Individuelle QR-Codes führen zu eigenen Landingpages mit Informationen, Kontaktmöglichkeit oder Nachrichtenfunktion. Inhalte lassen sich zentral verwalten und an verschiedene Organisationen anpassen.",
     benefit: "Für Unternehmen, Vereine, Veranstaltungen und Orte, die Informationen einfach zugänglich machen wollen.",
     tags: ["QR-Codes", "Landingpages", "Nachrichten"],
+    linkLabel: "Individuelle Lösung",
     tone: "light",
   },
 ];
@@ -67,7 +85,7 @@ export default function LoesungenPage() {
       <section className="portfolio-list shell">
         {solutions.map((solution) => <article className={`portfolio-card ${solution.tone}`} key={solution.number}>
           <div className="portfolio-card-top"><span>{solution.number}</span><span>{solution.category}</span></div>
-          <div className="portfolio-card-content"><div><h2>{solution.name}</h2><h3>{solution.title}</h3></div><div><p>{solution.text}</p><p className="portfolio-benefit"><strong>Für wen:</strong> {solution.benefit}</p><div className="tags">{solution.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></div>
+          <div className="portfolio-card-content"><div><h2>{solution.name}</h2><h3>{solution.title}</h3></div><div><p>{solution.text}</p><p className="portfolio-benefit"><strong>Für wen:</strong> {solution.benefit}</p><div className="tags">{solution.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>{solution.url ? <a className="portfolio-link" href={solution.url} target="_blank" rel="noreferrer">{solution.linkLabel} <span>↗</span></a> : <span className="portfolio-link portfolio-link-disabled">{solution.linkLabel}</span>}</div></div>
         </article>)}
       </section>
 
