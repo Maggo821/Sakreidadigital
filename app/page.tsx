@@ -23,9 +23,9 @@ const solutions = [
   {
     number: "04",
     type: "BeachOrder",
-    title: "Bestellen, wo der Tag stattfindet.",
-    text: "Gäste bestellen unkompliziert vom Strand, Stellplatz oder Ferienapartment. Anbieter erhalten einen einfachen digitalen Bestellkanal.",
-    tags: ["Bestellungen", "Lieferung"],
+    title: "Bestellen, wo der Kunde gerade ist.",
+    text: "BeachOrder ermöglicht digitale Bestellungen vor Ort, bei Märkten, Veranstaltungen, mobilen Händlern und in Ferienregionen. Anbieter erhalten einen einfachen Bestellkanal für Ausgabe oder Lieferung.",
+    tags: ["Vor Ort", "Mobile Händler"],
   },
 ];
 

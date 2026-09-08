@@ -21,11 +21,11 @@ const solutions = [
   {
     number: "02",
     name: "BeachOrder",
-    category: "Bestellung & Lieferung",
-    title: "Bestellen, wo der Tag stattfindet.",
-    text: "BeachOrder verbindet Anbieter und Gäste in Ferienregionen. Gäste bestellen direkt vom Strand, Stellplatz oder Ferienapartment, Anbieter verwalten Produkte, Bestellungen und Lieferungen digital.",
-    benefit: "Für Ferienregionen, Campingplätze, Gastronomie und mobile Anbieter.",
-    tags: ["Bestellungen", "Lieferung", "Marktplatz"],
+    category: "Bestellung & Verkauf",
+    title: "Bestellen, wo der Kunde gerade ist.",
+    text: "BeachOrder macht digitale Bestellungen direkt vor Ort möglich: am Marktstand, im Café, auf Veranstaltungen, beim mobilen Händler oder im Ferienapartment. Anbieter verwalten Angebote, Bestellungen und Ausgabe oder Lieferung an einem Ort.",
+    benefit: "Für Märkte, Gastronomie, Veranstaltungen, Ferienregionen und mobile Händler.",
+    tags: ["Vor Ort", "Lieferung", "Mobile Händler"],
     tone: "lime",
   },
   {

@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     "Digitalisierungsförderung KMU",
     "Digitalisierung KMU",
     "individuelle digitale Lösungen",
+    "digitale Bestellungen vor Ort",
+    "Bestellsystem für mobile Händler",
   ],
   authors: [{ name: "Marco Sakreida" }],
   creator: "Marco Sakreida",
