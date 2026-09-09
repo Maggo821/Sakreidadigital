@@ -3,6 +3,6 @@ import type { MetadataRoute } from "next";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://sakeida-digital.de/sitemap.xml",
+    sitemap: "https://sakreida.digital/sitemap.xml",
   };
 }

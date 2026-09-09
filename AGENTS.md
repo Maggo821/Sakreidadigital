@@ -4,7 +4,7 @@
 
 Website für Sakeida Digital – Digitalisierung, Prozessoptimierung, Automatisierung und individuelle digitale Lösungen für kleine und mittelständische Unternehmen. Standort Dreieich / Rhein-Main. KI ist ausdrücklich nur ein Baustein, nicht das Kernangebot.
 
-- Domain: `https://sakeida-digital.de` (Vercel, verknüpft mit GitHub)
+- Domain: `https://sakreida.digital` (Vercel, verknüpft mit GitHub)
 - Repo: `Maggo821/Sakreidadigital`
 - Stack: Next.js 16 (App Router, Turbopack) + React 19 + TypeScript, statische Seiten
 - Kontakt: `marcosakreida@outlook.de` · Tel. 0151 10100607
@@ -45,7 +45,7 @@ app/
 
 - `RESEND_API_KEY` – für Kontaktformular
 - `CONTACT_TO` – Zieladresse (default `marcosakreida@outlook.de`)
-- `CONTACT_FROM` – Absender (verifizierte Domain nötig, z. B. `kontakt@sakeida-digital.de`)
+- `CONTACT_FROM` – Absender (verifizierte Domain nötig, z. B. `kontakt@sakreida.digital`)
 
 ## Offene Punkte (Stand 2026-09-08)
 

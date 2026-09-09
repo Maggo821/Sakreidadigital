@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const TO = process.env.CONTACT_TO ?? "marcosakreida@outlook.de";
-const FROM = process.env.CONTACT_FROM ?? "kontakt@sakeida-digital.de";
+const FROM = process.env.CONTACT_FROM ?? "kontakt@sakreida.digital";
 
 export async function POST(request: Request) {
   const key = process.env.RESEND_API_KEY;

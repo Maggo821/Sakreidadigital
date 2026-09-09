@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://sakeida-digital.de";
+  const baseUrl = "https://sakreida.digital";
   return ["", "/loesungen", "/kontakt", "/impressum", "/datenschutz"].map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
