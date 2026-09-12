@@ -4,8 +4,11 @@ import { DATA_SOURCES, createPage, props } from "@/lib/notion";
 const TO = process.env.CONTACT_TO ?? "marcosakreida@outlook.de";
 const FROM = process.env.CONTACT_FROM ?? "kontakt@sakreida.digital";
 
-async function saveLeadToNotion(input: { name: string; email: string; company: string; message: string }) {
-  if (!process.env.NOTION_TOKEN) return;
+async function saveLeadToNotion(input: { name: string; email: string; company: string; message: string }): Promise<boolean> {
+  if (!process.env.NOTION_TOKEN) {
+    console.error("NOTION_TOKEN fehlt – Lead konnte nicht gespeichert werden.");
+    return false;
+  }
   try {
     await createPage(DATA_SOURCES.kunden, {
       Name: props.title(input.name),
@@ -15,17 +18,46 @@ async function saveLeadToNotion(input: { name: string; email: string; company: s
       Quelle: props.select("Website"),
       Notizen: props.rich(input.message),
     });
+    return true;
   } catch (error) {
     console.error("Notion-Lead konnte nicht angelegt werden:", error);
+    return false;
+  }
+}
+
+async function sendNotification(input: { name: string; email: string; company: string; message: string }): Promise<boolean> {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.error("RESEND_API_KEY fehlt – E-Mail-Benachrichtigung übersprungen.");
+    return false;
+  }
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: FROM,
+        to: [TO],
+        subject: `Anfrage von ${input.name} – Sakeida Digital Website`,
+        reply_to: input.email,
+        text: `Name: ${input.name}\nE-Mail: ${input.email}\nUnternehmen: ${input.company || "-"}\n\n${input.message}`,
+      }),
+    });
+    if (!res.ok) {
+      console.error("Resend-Versand fehlgeschlagen:", res.status, (await res.text()).slice(0, 200));
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error("Resend-Versand fehlgeschlagen:", error);
+    return false;
   }
 }
 
 export async function POST(request: Request) {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) {
-    return NextResponse.json({ ok: false, error: "Formular ist derzeit nicht konfiguriert." }, { status: 500 });
-  }
-
   let data: Record<string, string>;
   try {
     data = await request.json();
@@ -45,27 +77,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Eingabe ist zu lang." }, { status: 400 });
   }
 
-  const leadPromise = saveLeadToNotion({ name, email, company, message });
+  const [mailOk, leadOk] = await Promise.all([
+    sendNotification({ name, email, company, message }),
+    saveLeadToNotion({ name, email, company, message }),
+  ]);
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: FROM,
-      to: [TO],
-      subject: `Anfrage von ${name} – Sakeida Digital Website`,
-      reply_to: email,
-      text: `Name: ${name}\nE-Mail: ${email}\nUnternehmen: ${company || "-"}\n\n${message}`,
-    }),
-  });
-
-  await leadPromise;
-
-  if (!res.ok) {
-    return NextResponse.json({ ok: false, error: "Senden fehlgeschlagen. Bitte später erneut versuchen." }, { status: 502 });
+  if (!mailOk && !leadOk) {
+    return NextResponse.json(
+      { ok: false, error: "Senden fehlgeschlagen. Bitte später erneut versuchen." },
+      { status: 502 },
+    );
   }
 
   return NextResponse.json({ ok: true });
