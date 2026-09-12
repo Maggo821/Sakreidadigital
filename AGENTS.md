@@ -23,6 +23,8 @@ npm run start    # Produktions-Server
 app/
   page.tsx             # Startseite (Hero, Lösungen, Förderung, Prozess, FAQ, Kontakt)
   loesungen/page.tsx   # Lösungsportfolio (Hausboard, BeachOrder, OrderPoint, Familienboard, QR)
+  ratgeber/            # Ratgeber: Übersicht + Artikel (Markdown aus content/ratgeber, SSG)
+  termin/page.tsx      # Terminbuchung (iframe via BOOKING_URL, Fallback = Kontaktformular)
   kontakt/page.tsx     # Kontaktformular (POST /api/kontakt)
   impressum/           # Impressum
   datenschutz/         # Datenschutz
@@ -30,9 +32,11 @@ app/
   api/admin/           # Login/Logout für das Backoffice
   admin/               # Backoffice: Login + geschützter Bereich (Dashboard, Kunden, Projekte, Aufgaben)
   sitemap.ts, robots.ts, icon.svg, opengraph-image.tsx
+content/ratgeber/      # Ratgeber-Artikel als Markdown (Frontmatter: title, description, date, keywords)
 lib/
   notion.ts            # Notion-API-Client (Datenquellen, Properties)
   admin-auth.ts        # Passwort-Login + signiertes Session-Cookie
+  ratgeber.ts          # Artikel laden (Frontmatter-Parser)
 proxy.ts               # Routenschutz für /admin (Next 16: "proxy" statt "middleware")
 ```
 
@@ -55,6 +59,7 @@ proxy.ts               # Routenschutz für /admin (Next 16: "proxy" statt "middl
 - `NOTION_TOKEN` – Notion-Integration (gleicher Token wie lokal); nötig für Backoffice + Lead-Erfassung
 - `ADMIN_PASSWORD` – Passwort für `/admin` (lang und zufällig)
 - `ADMIN_SECRET` – optionaler Signatur-Schlüssel für Session-Cookies (sonst wird `ADMIN_PASSWORD` genutzt)
+- `BOOKING_URL` – optionale Terminbuchungs-URL (z. B. Cal.com/Calendly) für `/termin`; ohne Wert zeigt die Seite einen Fallback aufs Kontaktformular
 
 Alle sechs Variablen sind in Vercel gesetzt (Stand 2026-09-12), außer `RESEND_API_KEY`.
 
@@ -82,6 +87,7 @@ Root-Seite „🚀 Sakreida Digital“ (liegt aktuell unter „Sakreida Immobili
 - Anlegen von Notion-Datenbanken: MCP kann nur Data Sources in bestehenden DBs anlegen → neue DBs über Notion-API (`POST /v1/databases` mit `initial_data_source`, `Notion-Version: 2025-09-03`) via `NOTION_TOKEN`.
 - Förderprogramme: vollständig befüllt (Stand 2026-09-12, 31 Programme) – Bund (BAFA, INQA, KfW 511/512, Mittelstand-Digital, ZIM + ausgelaufene Digital Jetzt/go-digital) und alle 16 Bundesländer (u. a. Hessen: DIGI-Zuschuss, HessenFonds, RKW; BW, RLP, Bayern, NRW, Berlin, Brandenburg, Bremen, Hamburg, MV, Niedersachsen, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein, Thüringen) – je mit Status (Aktiv/Ausgelaufen/Neu prüfen) und Relevanz. Nächste Pflege: Programme regelmäßig auf Status prüfen, EU-Ebene ergänzen.
 - Wissensdatenbank (Stand 2026-09-12): Artikel zu Synology NAS, Paperless-NGX, n8n-Automatisierung, KI-Nutzungsregeln und Fördermittel-Checkliste; 8 Arbeitsvorlagen für den Makler-Effizienz-Check 90; Kunden-FAQ mit 7 typischen Fragen/Einwänden befüllt.
+- Website & Content: Bereich „🌐 Website & Content“ mit Datenbank „Ratgeber-Planung“ (Status: Idee/Entwurf/Veröffentlicht; 3 Artikel live, 3 Ideen offen). Artikel liegen als Markdown in `content/ratgeber/` im Repo – beim Schreiben neuer Artikel beide Seiten aktualisieren.
 
 ## Backoffice (Admin-Bereich)
 
@@ -103,6 +109,8 @@ Root-Seite „🚀 Sakreida Digital“ (liegt aktuell unter „Sakreida Immobili
 - Backoffice ist live: `https://sakreida.digital/admin` (Login-Passwort in Vercels `ADMIN_PASSWORD`, Stand 2026-09-12 gesetzt)
 - `RESEND_API_KEY` in Vercel setzen + Absender-Domain verifizieren (E-Mail-Benachrichtigung für Formular; Leads werden auch ohne Key gespeichert)
 - Backoffice: erste echte Kunden/Projekte eintragen
+- Terminbuchung: Account anlegen (z. B. Cal.com) und `BOOKING_URL` in Vercel setzen
+- Ratgeber: weitere Artikel aus der Notion-Ideen-Liste schreiben (Dokumentenarchiv, Angebote, CRM Handwerk)
 
 <!-- BEGIN:nextjs-agent-rules -->
 
