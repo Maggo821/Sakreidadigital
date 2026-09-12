@@ -1,7 +1,24 @@
 import { NextResponse } from "next/server";
+import { DATA_SOURCES, createPage, props } from "@/lib/notion";
 
 const TO = process.env.CONTACT_TO ?? "marcosakreida@outlook.de";
 const FROM = process.env.CONTACT_FROM ?? "kontakt@sakreida.digital";
+
+async function saveLeadToNotion(input: { name: string; email: string; company: string; message: string }) {
+  if (!process.env.NOTION_TOKEN) return;
+  try {
+    await createPage(DATA_SOURCES.kunden, {
+      Name: props.title(input.name),
+      "E-Mail": props.email(input.email),
+      Unternehmen: props.rich(input.company),
+      Status: props.select("Interessent"),
+      Quelle: props.select("Website"),
+      Notizen: props.rich(input.message),
+    });
+  } catch (error) {
+    console.error("Notion-Lead konnte nicht angelegt werden:", error);
+  }
+}
 
 export async function POST(request: Request) {
   const key = process.env.RESEND_API_KEY;
@@ -28,6 +45,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Eingabe ist zu lang." }, { status: 400 });
   }
 
+  const leadPromise = saveLeadToNotion({ name, email, company, message });
+
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -42,6 +61,8 @@ export async function POST(request: Request) {
       text: `Name: ${name}\nE-Mail: ${email}\nUnternehmen: ${company || "-"}\n\n${message}`,
     }),
   });
+
+  await leadPromise;
 
   if (!res.ok) {
     return NextResponse.json({ ok: false, error: "Senden fehlgeschlagen. Bitte später erneut versuchen." }, { status: 502 });
