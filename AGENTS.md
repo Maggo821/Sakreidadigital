@@ -49,12 +49,14 @@ proxy.ts               # Routenschutz für /admin (Next 16: "proxy" statt "middl
 
 ## Env-Vars (Vercel)
 
-- `RESEND_API_KEY` – für Kontaktformular
+- `RESEND_API_KEY` – für die E-Mail-Benachrichtigung des Kontaktformulars (empfohlen). Ohne Key werden Leads trotzdem in Notion gespeichert, es kommt nur keine E-Mail.
 - `CONTACT_TO` – Zieladresse (default `marcosakreida@outlook.de`)
 - `CONTACT_FROM` – Absender (verifizierte Domain nötig, z. B. `kontakt@sakreida.digital`)
 - `NOTION_TOKEN` – Notion-Integration (gleicher Token wie lokal); nötig für Backoffice + Lead-Erfassung
 - `ADMIN_PASSWORD` – Passwort für `/admin` (lang und zufällig)
 - `ADMIN_SECRET` – optionaler Signatur-Schlüssel für Session-Cookies (sonst wird `ADMIN_PASSWORD` genutzt)
+
+Alle sechs Variablen sind in Vercel gesetzt (Stand 2026-09-12), außer `RESEND_API_KEY`.
 
 ## Notion (Backoffice & Wissensdatenbank)
 
@@ -98,7 +100,8 @@ Root-Seite „🚀 Sakreida Digital“ (liegt aktuell unter „Sakreida Immobili
 - OrderPoint: endgültiger Name + Domain
 - BeachOrder/OrderPoint: Multi-Domain-Logik im eigenen Repo
 - Hausboard: Supabase-Produktionsanbindung
-- Backoffice aktivieren: `NOTION_TOKEN` + `ADMIN_PASSWORD` in Vercel setzen, dann `/admin` testen
+- Backoffice ist live: `https://sakreida.digital/admin` (Login-Passwort in Vercels `ADMIN_PASSWORD`, Stand 2026-09-12 gesetzt)
+- `RESEND_API_KEY` in Vercel setzen + Absender-Domain verifizieren (E-Mail-Benachrichtigung für Formular; Leads werden auch ohne Key gespeichert)
 - Backoffice: erste echte Kunden/Projekte eintragen
 
 <!-- BEGIN:nextjs-agent-rules -->
