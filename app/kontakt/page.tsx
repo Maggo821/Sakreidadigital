@@ -48,6 +48,7 @@ export default function KontaktPage() {
         <p className="eyebrow">Kontakt aufnehmen</p>
         <h1>Erzähl uns von<br /><em>deinem Vorhaben.</em></h1>
         <p className="page-intro">Du hast einen Prozess, der einfacher werden soll, oder eine Idee, die noch Struktur braucht? Schreib uns. Wir melden uns persönlich.</p>
+        <p style={{ marginTop: 18 }}><a className="back-link" href="/termin">→ Lieber direkt einen Termin buchen?</a></p>
       </section>
       <section className="form-section shell">
         {state === "success" ? (

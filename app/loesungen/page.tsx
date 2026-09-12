@@ -73,7 +73,7 @@ export default function LoesungenPage() {
     <main>
       <nav className="nav shell">
         <a className="brand" href="/" aria-label="Sakeida Digital Startseite"><span className="brand-mark">S</span><span>SAKEIDA<br /><i>DIGITAL</i></span></a>
-        <div className="nav-links"><a href="/">Startseite</a><a className="nav-cta" href="/kontakt">Kontakt <span>↗</span></a></div>
+        <div className="nav-links"><a href="/">Startseite</a><a href="/ratgeber">Ratgeber</a><a className="nav-cta" href="/kontakt">Kontakt <span>↗</span></a></div>
       </nav>
 
       <section className="solutions-hero shell">

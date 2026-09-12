@@ -95,6 +95,7 @@ export default function Home() {
         </a>
         <div className="nav-links">
           <a href="/loesungen">Lösungen</a>
+          <a href="/ratgeber">Ratgeber</a>
           <a href="#prozess">Prozess</a>
           <a className="nav-cta" href="/kontakt">Kontakt <span>↗</span></a>
         </div>
