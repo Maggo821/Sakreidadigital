@@ -24,19 +24,22 @@ app/
   page.tsx             # Startseite (Hero, Lösungen, Förderung, Prozess, FAQ, Kontakt)
   loesungen/page.tsx   # Lösungsportfolio (Hausboard, BeachOrder, OrderPoint, Familienboard, QR)
   ratgeber/            # Ratgeber: Übersicht + Artikel (Markdown aus content/ratgeber, SSG)
-  termin/page.tsx      # Terminbuchung (iframe via BOOKING_URL, Fallback = Kontaktformular)
+  termin/              # Terminbuchung (eigene Lösung: Slots, Buchung → Notion, ICS-Download)
   kontakt/page.tsx     # Kontaktformular (POST /api/kontakt)
   impressum/           # Impressum
   datenschutz/         # Datenschutz
   api/kontakt/route.ts # Formular-Backend (Resend + Notion-Lead)
+  api/termin/          # Terminbuchung (POST) + ICS-Download
   api/admin/           # Login/Logout für das Backoffice
-  admin/               # Backoffice: Login + geschützter Bereich (Dashboard, Kunden, Projekte, Aufgaben)
+  admin/               # Backoffice: Login + geschützter Bereich (Dashboard, Kunden, Projekte, Aufgaben, Termine)
   sitemap.ts, robots.ts, icon.svg, opengraph-image.tsx
 content/ratgeber/      # Ratgeber-Artikel als Markdown (Frontmatter: title, description, date, keywords)
 lib/
   notion.ts            # Notion-API-Client (Datenquellen, Properties)
   admin-auth.ts        # Passwort-Login + signiertes Session-Cookie
   ratgeber.ts          # Artikel laden (Frontmatter-Parser)
+  booking.ts           # Termin-Slots (Mo–Fr 9–17, 30 Min, 12 h Vorlauf), ICS-Erzeugung
+  termine.ts           # Termine aus Notion (gebuchte Slots)
 proxy.ts               # Routenschutz für /admin (Next 16: "proxy" statt "middleware")
 ```
 
@@ -59,7 +62,8 @@ proxy.ts               # Routenschutz für /admin (Next 16: "proxy" statt "middl
 - `NOTION_TOKEN` – Notion-Integration (gleicher Token wie lokal); nötig für Backoffice + Lead-Erfassung
 - `ADMIN_PASSWORD` – Passwort für `/admin` (lang und zufällig)
 - `ADMIN_SECRET` – optionaler Signatur-Schlüssel für Session-Cookies (sonst wird `ADMIN_PASSWORD` genutzt)
-- `BOOKING_URL` – optionale Terminbuchungs-URL (z. B. Cal.com/Calendly) für `/termin`; ohne Wert zeigt die Seite einen Fallback aufs Kontaktformular
+
+Terminbuchung ist eine eigene Lösung (kein Cal.com/Calendly): Slots Mo–Fr 9–17 Uhr, 30 Minuten, 12 Stunden Vorlauf, 14 Tage im Voraus; Konfiguration in `lib/booking.ts`.
 
 Alle sechs Variablen sind in Vercel gesetzt (Stand 2026-09-12), außer `RESEND_API_KEY`.
 
@@ -74,7 +78,8 @@ Root-Seite „🚀 Sakreida Digital“ (liegt aktuell unter „Sakreida Immobili
 │   ├── Kunden & Kontakte        (CRM, Status/Quelle/Branche)
 │   ├── Projekte & Aufträge      (Relation → Kunden)
 │   ├── Angebote & Rechnungen    (Relation → Kunden)
-│   └── Aufgaben & To-dos        (Relation → Kunden, Projekte)
+│   ├── Aufgaben & To-dos        (Relation → Kunden, Projekte)
+│   └── Termine                  (Buchungen von sakreida.digital/termin)
 ├── 📚 Wissensdatenbank
 │   ├── Wissen & Methoden        (Kategorien inkl. Fördermittel)
 │   ├── Prozesse & Checklisten
@@ -109,7 +114,7 @@ Root-Seite „🚀 Sakreida Digital“ (liegt aktuell unter „Sakreida Immobili
 - Backoffice ist live: `https://sakreida.digital/admin` (Login-Passwort in Vercels `ADMIN_PASSWORD`, Stand 2026-09-12 gesetzt)
 - `RESEND_API_KEY` in Vercel setzen + Absender-Domain verifizieren (E-Mail-Benachrichtigung für Formular; Leads werden auch ohne Key gespeichert)
 - Backoffice: erste echte Kunden/Projekte eintragen
-- Terminbuchung: Account anlegen (z. B. Cal.com) und `BOOKING_URL` in Vercel setzen
+- Terminbuchung: fertig (eigene Lösung, live) – Bestätigungs-Mails brauchen `RESEND_API_KEY`
 - Ratgeber: weitere Artikel aus der Notion-Ideen-Liste schreiben (Dokumentenarchiv, Angebote, CRM Handwerk)
 
 <!-- BEGIN:nextjs-agent-rules -->
