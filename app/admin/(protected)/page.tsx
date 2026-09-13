@@ -1,5 +1,6 @@
 import { isAdmin } from "@/lib/admin-auth";
 import { DATA_SOURCES, getDate, getSelect, getTitle, queryDataSource, type NotionPage } from "@/lib/notion";
+import { getTermine } from "@/lib/termine";
 import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -9,6 +10,19 @@ function formatDate(value: string): string {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "–";
   return date.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+}
+
+function formatDateTime(value: string): string {
+  if (!value) return "–";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "–";
+  return date.toLocaleString("de-DE", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 }
 
 function today(): string {
@@ -23,10 +37,11 @@ export default async function AdminDashboard() {
   let kunden: NotionPage[] = [];
   let projekte: NotionPage[] = [];
   let aufgaben: NotionPage[] = [];
+  let termine: NotionPage[] = [];
   let error = "";
 
   try {
-    [kunden, projekte, aufgaben] = await Promise.all([
+    [kunden, projekte, aufgaben, termine] = await Promise.all([
       queryDataSource(DATA_SOURCES.kunden, {
         sorts: [{ timestamp: "created_time", direction: "descending" }],
       }),
@@ -36,6 +51,7 @@ export default async function AdminDashboard() {
       queryDataSource(DATA_SOURCES.aufgaben, {
         sorts: [{ property: "Fällig am", direction: "ascending" }],
       }),
+      getTermine(),
     ]);
   } catch (err) {
     error = err instanceof Error ? err.message : "Notion ist nicht erreichbar.";
@@ -50,6 +66,18 @@ export default async function AdminDashboard() {
   const faellig = offeneAufgaben.filter((a) => {
     const due = getDate(a.properties["Fällig am"]);
     return due && due <= today();
+  });
+
+  const now = Date.now();
+  const naechsteTermine = termine
+    .filter((termin) => {
+      const start = getDate(termin.properties["Start"]);
+      return start && new Date(start).getTime() >= now && getSelect(termin.properties["Status"]) !== "Abgesagt";
+    })
+    .slice(0, 6);
+  const termineDieseWoche = naechsteTermine.filter((termin) => {
+    const start = getDate(termin.properties["Start"]);
+    return start && new Date(start).getTime() <= now + 7 * 24 * 3600_000;
   });
 
   return (
@@ -92,6 +120,10 @@ export default async function AdminDashboard() {
             <div className="adm-card">
               <b>{offeneAufgaben.length}</b>
               <span>Offene Aufgaben</span>
+            </div>
+            <div className="adm-card">
+              <b>{termineDieseWoche.length}</b>
+              <span>Termine (7 Tage)</span>
             </div>
           </div>
 
@@ -193,6 +225,34 @@ export default async function AdminDashboard() {
                           <span className="adm-badge">{getSelect(p.properties["Status"]) || "–"}</span>
                         </td>
                         <td>{formatDate(getDate(p.properties["Start"]))}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+
+            <div className="adm-panel">
+              <h2>
+                Nächste Termine <a href="/admin/termine">Alle ansehen →</a>
+              </h2>
+              {naechsteTermine.length === 0 ? (
+                <p className="adm-empty">Keine Termine geplant.</p>
+              ) : (
+                <table className="adm-table">
+                  <thead>
+                    <tr>
+                      <th>Termin</th>
+                      <th>Zeitpunkt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {naechsteTermine.map((termin) => (
+                      <tr key={termin.id}>
+                        <td>
+                          <strong>{getTitle(termin.properties["Termin"])}</strong>
+                        </td>
+                        <td>{formatDateTime(getDate(termin.properties["Start"]))}</td>
                       </tr>
                     ))}
                   </tbody>

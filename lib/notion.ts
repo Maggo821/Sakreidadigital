@@ -6,6 +6,7 @@ export const DATA_SOURCES = {
   projekte: "ef148e41-7258-472e-9fdd-7f4150ef1068",
   angebote: "c82daec1-651f-422f-a639-e43db64d7248",
   aufgaben: "474ada67-6241-4d3e-bc26-6d92daf61d04",
+  termine: "e6b1ed38-e2b7-4698-a6d8-035a8a53c134",
 } as const;
 
 export type NotionPage = {

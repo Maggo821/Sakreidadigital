@@ -58,3 +58,13 @@ h1, h2, h3, p { margin-top: 0; }.hero h1 { font-size: clamp(70px, 12vw, 172px); 
 .article-cta h2 { font-size: clamp(30px, 4vw, 48px); letter-spacing: -.06em; margin: 18px 0 26px; }
 .booking-frame { width: 100%; min-height: 720px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
 @media (max-width: 700px) { .ratgeber-list { padding-bottom: 90px; } .ratgeber-card { padding: 26px 0; } .article-cta { margin-top: 55px; } .booking-frame { min-height: 620px; } }
+
+.booking-days { display: grid; gap: 22px; max-width: 760px; }
+.booking-day { border-top: 1px solid var(--line); padding-top: 16px; }
+.booking-day h3 { font-size: 15px; letter-spacing: -.02em; margin: 0 0 12px; }
+.booking-slots { display: flex; flex-wrap: wrap; gap: 8px; }
+.booking-slot { display: inline-block; border: 1px solid var(--ink); background: transparent; border-radius: 100px; padding: 9px 15px; font: 600 13px Arial, Helvetica, sans-serif; color: var(--ink); cursor: pointer; transition: background .15s, color .15s; }
+.booking-slot:hover { background: var(--lime); }
+.booking-slot.selected { background: var(--ink); color: var(--lime); }
+.booking-form-card { margin-top: 38px; border: 1px solid var(--line); border-radius: 16px; padding: 26px; background: rgba(255,255,255,.5); max-width: 760px; }
+.booking-form-card h3 { font-size: 20px; letter-spacing: -.03em; margin: 0 0 6px; }

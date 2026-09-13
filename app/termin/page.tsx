@@ -1,16 +1,27 @@
 import type { Metadata } from "next";
+import { generateSlots, type Slot } from "@/lib/booking";
+import { getBookedKeys } from "@/lib/termine";
+import BookingForm from "./BookingForm";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Termin vereinbaren",
   description:
-    "Buche direkt einen Termin für ein kostenloses Erstgespräch – 15 Minuten, unverbindlich, per Videokonferenz oder Telefon.",
+    "Buche direkt einen Termin für ein kostenloses Erstgespräch – 30 Minuten, unverbindlich, per Videokonferenz oder Telefon.",
   alternates: { canonical: "/termin" },
-  robots: { index: true, follow: true },
 };
 
-const BOOKING_URL = process.env.BOOKING_URL ?? "";
+export default async function TerminPage() {
+  let slots: Slot[] = [];
+  let error = "";
 
-export default function TerminPage() {
+  try {
+    slots = generateSlots(await getBookedKeys());
+  } catch {
+    error = "Die Termine konnten gerade nicht geladen werden.";
+  }
+
   return (
     <main>
       <nav className="nav shell">
@@ -35,31 +46,13 @@ export default function TerminPage() {
           <em>Termin buchen.</em>
         </h1>
         <p className="page-intro">
-          Wähle einen Slot für ein kostenloses Erstgespräch – 15 Minuten, unverbindlich. Wir klären, worum es
-          geht und ob wir zusammenpassen.
+          Kostenloses Erstgespräch, 30 Minuten, unverbindlich – per Videokonferenz oder Telefon. Wähle unten
+          einen freien Slot.
         </p>
       </section>
 
       <section className="form-section shell">
-        {BOOKING_URL ? (
-          <iframe
-            className="booking-frame"
-            src={BOOKING_URL}
-            title="Terminbuchung"
-            loading="lazy"
-          />
-        ) : (
-          <div className="form-success">
-            <h2>Buchung wird gerade eingerichtet.</h2>
-            <p>
-              Schreib uns solange direkt über das Kontaktformular – wir melden uns persönlich und finden einen
-              Termin.
-            </p>
-            <a className="back-link" href="/kontakt">
-              → Zum Kontaktformular
-            </a>
-          </div>
-        )}
+        <BookingForm slots={slots} error={error} />
       </section>
 
       <footer className="footer shell">

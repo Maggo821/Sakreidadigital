@@ -105,3 +105,14 @@ export async function setAufgabeStatus(formData: FormData) {
   revalidatePath("/admin/aufgaben");
   revalidatePath("/admin");
 }
+
+export async function setTerminStatus(formData: FormData) {
+  await requireAdmin();
+  const id = str(formData, "id");
+  const status = str(formData, "status");
+  if (!id || !status) return;
+
+  await updatePage(id, { Status: props.select(status) });
+  revalidatePath("/admin/termine");
+  revalidatePath("/admin");
+}
