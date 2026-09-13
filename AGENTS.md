@@ -65,7 +65,7 @@ proxy.ts               # Routenschutz für /admin (Next 16: "proxy" statt "middl
 
 Terminbuchung ist eine eigene Lösung (kein Cal.com/Calendly): Slots Mo–Fr 9–17 Uhr, 30 Minuten, 12 Stunden Vorlauf, 14 Tage im Voraus; Konfiguration in `lib/booking.ts`.
 
-Alle sechs Variablen sind in Vercel gesetzt (Stand 2026-09-12), außer `RESEND_API_KEY`.
+Alle sechs Variablen sind in Vercel gesetzt (Stand 2026-09-13). `RESEND_API_KEY` ist aktiv; die Absender-Domain `sakreida.digital` muss bei Strato noch über 4 DNS-Einträge verifiziert werden (Resend → Domains). Bis dahin werden Leads/Termine gespeichert, aber keine E-Mails versendet.
 
 ## Notion (Backoffice & Wissensdatenbank)
 
@@ -114,7 +114,8 @@ Root-Seite „🚀 Sakreida Digital“ (liegt aktuell unter „Sakreida Immobili
 - Backoffice ist live: `https://sakreida.digital/admin` (Login-Passwort in Vercels `ADMIN_PASSWORD`, Stand 2026-09-12 gesetzt)
 - `RESEND_API_KEY` in Vercel setzen + Absender-Domain verifizieren (E-Mail-Benachrichtigung für Formular; Leads werden auch ohne Key gespeichert)
 - Backoffice: erste echte Kunden/Projekte eintragen
-- Terminbuchung: fertig (eigene Lösung, live) – Bestätigungs-Mails brauchen `RESEND_API_KEY`
+- Terminbuchung: fertig (eigene Lösung, live) – Bestätigungs-Mails laufen, sobald `sakreida.digital` in Resend verifiziert ist
+- Resend: `sakreida.digital` bei Strato verifizieren (4 DNS-Einträge: DKIM TXT `resend._domainkey`, MX+TXT `send`, CNAME `rsend`)
 - Ratgeber: weitere Artikel aus der Notion-Ideen-Liste schreiben (Dokumentenarchiv, Angebote, CRM Handwerk)
 
 <!-- BEGIN:nextjs-agent-rules -->
